@@ -1,0 +1,25 @@
+command=/usr/lib/i3blocks/$BLOCK_NAME
+
+separator_block_width=15
+color=#DDDDDD
+
+[ram]
+label=:
+command=/usr/lib/i3blocks/memory | grep -E -o '[0-9].[0-9]?G'
+interval=30
+
+[disk-home]
+label=:
+command=df -h -P -l / | awk '/\/.*/ {print $4; exit 0}'
+interval=30
+
+[volume]
+label=:
+command=amixer get Master | grep -E -o '[0-9]{1,3}?%' | head -1
+interval=once
+signal=1
+
+[time]
+label=:
+command=date '+%a, %d %b %H:%M'
+interval=5

@@ -7,6 +7,9 @@ secrets/*
 *prompt-link
 *.bak
 
+# i3 
+i3/wallpaper-link
+
 ### neovim ignores ###
 # Vim-Plug directories, to be ignored
 #TODO: determine if /site is a good ignore (vimplug)
