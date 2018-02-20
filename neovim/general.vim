@@ -16,6 +16,16 @@ set expandtab		" insert spaces when TAB is pressed
 set tabstop=4		" default spaces used for tabs as 4
 set shiftwidth=2	" indentation increments when using '<' & '>'
 
+" TODO figure out which settings need to be changed by OS, by default use unix
+" host OS settings
+" set ff="unix"
+" if has("unix")
+"   let s:uname = system("uname")
+"   if s:uname == "Darwin\n"
+"     " Do Mac stuff here
+"   endif
+" endif
+
 set noerrorbells	" no beeps please
 set modeline		" enable modeline
 "set nojoinspaces	" prevents insertion of two spaces after punctiation on join (J)
