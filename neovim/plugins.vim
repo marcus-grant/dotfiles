@@ -107,6 +107,8 @@ let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#folding#level = 2
 let g:pandoc#syntax#colorcolumn = 0
 " let g:pandoc#formatting#mode = "ha"
+" fixes irritating fold column on left https://github.com/vim-pandoc/vim-pandoc/issues/200
+let g:pandoc#folding#fdc = 0
 
 " vim-markdown-composer
 " ---------------------
