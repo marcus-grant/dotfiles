@@ -7,7 +7,7 @@
 "  leader is comma key (while in normal mode)
 let mapleader=","
 " disable search highlights with leader+h
-nnoremap <leader><h> :noh<cr>
+nnoremap <leader>h :noh<cr>
 
 " text modification scripts
 " ------------------------------------------------------------------------------
@@ -57,3 +57,5 @@ nnoremap <leader>= <C-w>=
 " swap splits
 nnoremap <leader>s <C-w>r
 
+" fzf
+nnoremap <leader>f :Files<cr>

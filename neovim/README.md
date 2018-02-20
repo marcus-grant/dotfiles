@@ -6,8 +6,10 @@ meVim
 Keymaps
 -------
 
-* Leader: `,`
+* Leader: (`,` key)
   * `<leader>l`: Toggle `vim-javascript` concealing features
+  * `<leader>f`: Bring up fzf file search with command `Files`
+  * `<leader>h`: Disable highlights
 * Pane Controls
 
 
@@ -88,11 +90,52 @@ let g:javascript_conceal_underscore_arrow_function = "⇒"
 
 ### TernJS
 
- 
+
+
+
+File Management
+---------------
+
+### fzf, fd, & rg
+- FZF has a vim plugin [`junnegun/fzf.vim`][13]
+- Provides  hooks into the `FZF_DEFAULT_COMMAND` defined in shell vars
+- Can be used to search files, Git, Buffers, color schemes, ag, tags, history, keymaps, etc.
+
+#### Commands
+
+
+| Command           | List                                  |
+| ---               | ---                                   |
+| `Files [PATH]`    | Files (similar to `:FZF`)             |
+| `GFiles [OPTS]`   | Git files (`git ls-files`)            |
+| `GFiles?`         | Git files (`git status`)              |
+| `Buffers`         | Open buffers                          |
+| `Colors`          | Color schemes                         |
+| `Ag [PATTERN]`    | [ag][ag] search (`ALT-A` select all `ALT-D` deselect all) |
+| `Lines [QUERY]`   | Lines in loaded buffers               |
+| `BLines [QUERY]`  | Lines in the current buffer           |
+| `Tags [QUERY]`    | Tags in the project (`ctags -R`)      |
+| `BTags [QUERY]`   | Tags in the current buffer            |
+| `Marks`           | Marks                                 |
+| `Windows`         | Windows                               |
+| `Locate PATTERN`  | `locate` command output               |
+| `History`         | `v:oldfiles` and open buffers         |
+| `History:`        | Command history                       |
+| `History/`        | Search history                        |
+| `Snippets`        | Snippets ([UltiSnips][us])            |
+| `Commits`         | Git commits (uses [fugitive.vim][f])  |
+| `BCommits`        | Git commits for the current buffer    |
+| `Commands`        | Commands                              |
+| `Maps`            | Normal mode mappings                  |
+| `Helptags`        | Help tags <sup id="a1">[1](#helptags)</sup> |
+| `Filetypes`       | File types                            |
+
+
 
 
 To-Do's
 -------
+
 * Miscellaneous
   * [x] Install Script
   * [x] Plugin Manager
@@ -101,23 +144,45 @@ To-Do's
   * [x] Pane Management w/ Keymaps
   * [x] Sufficient Defaults
   * [x] `foldmethod=marker` for vim & sh
+  * [x] `noh` binding, using leader key
+  * [ ] Snippets [`Github: SirVer/ultisnips`][14]
   * [ ] Better folding techniques
     * A good [guide][12]
-  * [ ] noh binding, using leader key and/or defaults for substitutions to disable this
   * [ ] Class & Function Tags
-  * [ ] Copy Over Keymaps, and File Recognizers from Vim
-  * [ ] Previous Vim settings
-  * [ ] Git editing ? *maybe better for lvim*
   * [ ] mvim
   * [ ] Update Scripts
   * [ ] Bash Aliases "mevim"
   * [ ] Improve portability with xdg & dynamic filepaths: [link][100]
-* FuzzyFinder with Keymaps
-  * [ ] fuzzy finder
   * [ ] indentation grids
   * [ ] Basic neovim terminal keymaps, like [this][11] maybe?
     * just use a light `|` character
-  * [ ] Insert/Remove newlines from outside editor
+* FuzzyFinder with Keymaps
+  * [x] fuzzy finder
+    * `fzf.vim` installed
+    * `<leader>+f` opens `Files:` command to search for files
+  * [ ] fzf & ripgrep function to search notes directory & open the selected file
+* Markdown
+  * [x] `noh` binding, using leader key
+  * [x] External Renderer
+    * Handled by `vim-markdown-composer`
+  * [ ] Pandoc Integration
+  * [ ] Concealer options
+  * [ ] Auto fold h2 & lower
+  * [ ] Block Editing
+  * [ ] Highlighting
+  * [ ] Linting Grammar & Spelling *(write-good?)*
+  * [ ] Latex Blocks
+  * [ ] Ctags integration?
+  * [ ] Automatic references link or bibilography
+  * [ ] Better moving through large blocks of text
+    * Perhaps using hard/soft wraps?
+    * Perhaps using block focusing, where only one block is seen by choice
+    * Should have some keymaps to better move through a block
+  * [ ] Some kind of *org-mode*-like features
+    * Perhaps `vimwiki`
+    * concealer syntaxes for markdown
+  * [ ] Prose focused writing mode, *(think iA writer)*
+  * [ ] Dictionary & Thesaurus features
 * Javascript
   * [x] Proper Syntax & Spacing
     * handled by `vim-jsx` & `vim-javascript`
@@ -140,27 +205,6 @@ To-Do's
   * [ ] Tag Surrounds
   * [ ] File & Local Autocomplete
   * [ ] RGB highlighting
-* Markdown
-  * [x] External Renderer
-    * Handled by `vim-markdown-composer`
-  * [ ] Pandoc Integration
-  * [ ] Concealer options
-  * [ ] Auto fold h2 & lower
-  * [ ] Block Editing
-  * [ ] Highlighting
-  * [ ] Linting Grammar & Spelling *(write-good?)*
-  * [ ] Latex Blocks
-  * [ ] Ctags integration?
-  * [ ] Automatic references link or bibilography
-  * [ ] Better moving through large blocks of text
-    * Perhaps using hard/soft wraps?
-    * Perhaps using block focusing, where only one block is seen by choice
-    * Should have some keymaps to better move through a block
-  * [ ] Some kind of *org-mode*-like features
-    * Perhaps `vim-wiki`
-    * concealer syntaxes for markdown
-  * [ ] Prose focused writing mode, *(think iA writer)*
-  * [ ] Dictionary & Thesaurus features
 * Go
   * [ ] Linting
   * [ ] Autocompletion
@@ -194,6 +238,8 @@ To-Do's
 10. [Github: calitux/deoplete-ternjs][10]
 11. [Jacques Visser (Medium): Neovim Has a Built-In Terminal Emulator?!][11]
 12. [Steve Losh - Advanced Folding][12]
+13. [Github: junegunn/fzf.vim][13]
+14. [Github: SirVer/ultisnips][14]
 
 
 [01]: https://github.com/rafi/vim-config "Github/rafi/vim-config: A good example of a config"
@@ -208,5 +254,7 @@ To-Do's
 [10]: https://github.com/carlitux/deoplete-ternjs "Github: calitux/deoplete-ternjs"
 [11]: https://medium.com/@jcqvisser/neovim-has-a-built-in-terminal-emulator-cf057f767dbc "Jacques Visser (Medium): Neovim Has a Built-In Terminal Emulator?!"
 [12]: http://learnvimscriptthehardway.stevelosh.com/chapters/49.html "Steve Losh - Advanced Folding"
+[13]: https://github.com/junegunn/fzf.vim "Github: junegunn/fzf.vim"
+[14]: https://github.com/SirVer/ultisnips "Github: SirVer/ultisnips"
 
 [100]: http://bit.ly/2y0UkPU
