@@ -69,6 +69,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+" Snippets
+" let g:UltiSnipsEditSplit = vertical how to open ultisnips editing
+" let g:UltiSnipsSnippetsDir = ["~/.config/nvim/snips"]
+
 " vim-javascript & vim-jsx
 " syntax highlighting for jsdocs
 let g:javascript_plugin_jsdoc = 1
@@ -94,6 +98,15 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
+
+
+" Mardown
+
+" vim-pandoc
+let g:pandoc#syntax#conceal#urls = 1
+" let g:pandoc#folding#level = 2
+let g:pandoc#syntax#colorcolumn = 0
+" let g:pandoc#formatting#mode = "ha"
 
 " vim-markdown-composer
 " ---------------------

@@ -25,6 +25,10 @@ Folding
 
 Markdown Editing
 ----------------
+
+### Vim-Pandoc
+- Some great settings are detailed in this [reddit thread][17]
+
 ### Vim Markdown Composer
 A plugin that uses the Rust framework **Aurelius** to live-render markdown into a local server. It requires rust install, which can be done by entering this command into the command line, `curl https://sh.rustup.rs -sSf | sh`. Then it's installed into this configuration by entering into the `init.vim` file, this snippet of code below.
 ```viml
@@ -41,7 +45,7 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 ```
 
-There are various configurations that are unfortunately only written down into the help file, which is accessible from the vim command, `help markdown-composer`. The default local route to this page is [`http://[::1]:40447/`](http://[::1]:40447/)
+There are various configurations that are unfortunately only written down into the help file, which is accessible from the vim command, `help markdown-composer`. The default local route is `localhost`, **but** unfortunately, it uses a random open port every time it starts, so it is often better to just use the commands: `ComposerOpen` to open the default browser, and then `ComposerStart` to start the composer.
 
 #### Markdown Composer Options
 * `g:markdown_composer_browser`: Specifies a browser for the plugin to use, if not specified, it will use the default.
@@ -165,7 +169,12 @@ To-Do's
   * [x] `noh` binding, using leader key
   * [x] External Renderer
     * Handled by `vim-markdown-composer`
-  * [ ] Pandoc Integration
+  * [x] Pandoc Integration
+    * handled by `vim-pandoc`
+    * [ ] update `init.vim` to only load by filetype
+  * [ ] External pandoc hooks
+  * [ ] table formatting
+  * [ ] Distraction free mode [goyo][15]
   * [ ] Concealer options
   * [ ] Auto fold h2 & lower
   * [ ] Block Editing
@@ -221,6 +230,8 @@ To-Do's
 * Appearance
   * [x] fix `PaperColor` highlighting for conceals
     * handled by chancing `Conceal` option in `colors/PaperColor.vim`
+  * [ ] Nice low contrast theme with bells & whistles [`seoul256`][16]
+  * [ ] Gruvbox theme
   * [ ] `ayu.vim`
   * [ ] General concealers
     * [ ] const/var/let
@@ -240,6 +251,9 @@ To-Do's
 12. [Steve Losh - Advanced Folding][12]
 13. [Github: junegunn/fzf.vim][13]
 14. [Github: SirVer/ultisnips][14]
+15. [Github: junnegun/goyo.vim - Distraction-Free Writting][15]
+16. [Github: junnegun/seoul256][16]
+17. [r/vim: Great Notetaking Configs][17]
 
 
 [01]: https://github.com/rafi/vim-config "Github/rafi/vim-config: A good example of a config"
@@ -256,5 +270,8 @@ To-Do's
 [12]: http://learnvimscriptthehardway.stevelosh.com/chapters/49.html "Steve Losh - Advanced Folding"
 [13]: https://github.com/junegunn/fzf.vim "Github: junegunn/fzf.vim"
 [14]: https://github.com/SirVer/ultisnips "Github: SirVer/ultisnips"
+[15]: https://github.com/junegunn/goyo.vim "Github: junnegun/goyo.vim - Distraction-Free Writting"
+[16]: https://github.com/junegunn/seoul256.vim "Github: junnegun/seoul256"
+[17]: https://www.reddit.com/r/vim/comments/2r24nm/note_taking_using_vim_and_pandocs/ "r/vim: Great Notetaking Configs"
 
 [100]: http://bit.ly/2y0UkPU

@@ -63,6 +63,19 @@ Plug 'tpope/vim-git'
 " TODO: Find out if there's a good on-demand way to load this
 Plug 'tpope/vim-fugitive'
 
+" ultisnips
+" Plug 'SirVer/ultisnips'
+
+" markdown
+" vim-pandoc 
+" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
+" Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+" Code to execute when the plugin is lazily loaded on demand
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+autocmd! User goyo.vim echom 'Goyo is now loaded!'
+
 " euclio/vim-markdown-composer a rust-based web server that live-renders markdown
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
