@@ -83,7 +83,9 @@ endif
 " autocomplete
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<TAB>" : "\<C-n>"
+"
+" TODO: shouldn't this be reversed?
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Bind the PopUpMenu for deoplete to deal better with ultisnips
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
