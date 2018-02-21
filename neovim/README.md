@@ -3,6 +3,12 @@ meVim
 
 *My personal configurations for NeoVim, which by contrast to my vanilla vim config is a fully featured IDE for Python, Javascript, C++, Platform IO, Shell, Rust & Go*
 
+
+Overall Design of NeoVim Configs
+--------------------------------
+
+* This [guy](https://github.com/tjdevries/config_manager/blob/master/nvim/init/02-plugins.vim) has some pretty neat ideas about how to manage vim dotfiles.
+
 Keymaps
 -------
 
@@ -10,6 +16,8 @@ Keymaps
   * `<leader>l`: Toggle `vim-javascript` concealing features
   * `<leader>f`: Bring up fzf file search with command `Files`
   * `<leader>h`: Disable highlights
+* Control `^SOMEKEY`
+  * `^j`: during insert will expand ultisnips if detected by deoplete & will jump through snippet insertions when repeated
 * Pane Controls
 
 
@@ -26,10 +34,12 @@ Folding
 Markdown Editing
 ----------------
 
-### Vim-Pandoc
+### Vim-Pandoc ###
 - Some great settings are detailed in this [reddit thread][17]
+* this plugin automatically has spell check concealing on, disable it on startup by putting this in the plugins config file `set nospell`
+* Turn it back on again by going to *command mode* & entering `set spell`
 
-### Vim Markdown Composer
+### Vim Markdown Composer ###
 A plugin that uses the Rust framework **Aurelius** to live-render markdown into a local server. It requires rust install, which can be done by entering this command into the command line, `curl https://sh.rustup.rs -sSf | sh`. Then it's installed into this configuration by entering into the `init.vim` file, this snippet of code below.
 ```viml
 function! BuildComposer(info)
@@ -47,7 +57,8 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 There are various configurations that are unfortunately only written down into the help file, which is accessible from the vim command, `help markdown-composer`. The default local route is `localhost`, **but** unfortunately, it uses a random open port every time it starts, so it is often better to just use the commands: `ComposerOpen` to open the default browser, and then `ComposerStart` to start the composer.
 
-#### Markdown Composer Options
+#### Markdown Composer Options ####
+
 * `g:markdown_composer_browser`: Specifies a browser for the plugin to use, if not specified, it will use the default.
 * `g:markdown_composer_open_browser`: If set to `0`, then the plugin won't attempt to open the user's specified browser, requiring the user to open it to the local address manually
 * `g:markdown_composer_external_renderer`: This allows an external command to be run by the server to render.
@@ -66,9 +77,12 @@ There are various configurations that are unfortunately only written down into t
   * Can be local paths and URLs
   * **NOTE** they **must** use absolute and prefixed schemes like so: `file:///home/euclio/markdown.css`
 
+
 Javascript
 ----------
-### `Vim-Javascript`
+
+### `Vim-Javascript` ###
+
 * There are **concealing** features embedded that can make code look nice, but crucially make code shorter when editing in neovim
 * Below is an example config that is currently placed in `plugins.vim`
 
@@ -92,20 +106,18 @@ let g:javascript_conceal_underscore_arrow_function = "⇒"
 * Then there's a keymap that toggles JS concealment `<leader>l`
 
 
-### TernJS
-
-
+### TernJS ###
 
 
 File Management
 ---------------
 
-### fzf, fd, & rg
+### fzf, fd, & rg ###
 - FZF has a vim plugin [`junnegun/fzf.vim`][13]
 - Provides  hooks into the `FZF_DEFAULT_COMMAND` defined in shell vars
 - Can be used to search files, Git, Buffers, color schemes, ag, tags, history, keymaps, etc.
 
-#### Commands
+#### Commands ###
 
 
 | Command           | List                                  |
@@ -135,108 +147,144 @@ File Management
 | `Filetypes`       | File types                            |
 
 
+Completion
+----------
+
+* This guy wrote a decent enough [guide][18] this when combining `ultisnips`, `deoplete`, `ternjs` & `jspc`
+  * It misses a crucial setting, `let g:deoplete#sources.javascript = ['buffer', 'tern']`
+  * crucial because the way he writes it is `...#sources['javascript']...` which fails
+* Uses [carlitux/deoplete-ternjs][19] to manage displaying completions from tern
+* `sudo npm i -g tern` is required to install on local system
+* `tern` will also need to be configured with a `.tern-project` specific to the project or local userspace
+  * The Tern [documentation][21] is a good pace to start
+* if the plugin system doesn't automatically handle the installation of node packs for the plugins make sure deoplete-tern has its plug dir run it
+  * same for [tern_for_vim][20]
+* `tern_for_vim` & `deoplete-ternjs` needs some improvements like...
+  * Not reversing the order of `<Tab>` during completion selection
+  * showing function signatures in popup menu, refered to as `pum`
+  * `TernDef`
+  * `TernDoc`
+  * `TernType`
+  * `TernRefs`
+  * `TernRename`
+
+
+
+Snippets
+--------
+
+* The current snippet engine being used is defined by `let g:my_snippet_manager`
+	- Valid options are: (`ultisnips`, `neosnippet`)
+* Snippets are stored in `$HOME/dotfiles/neovim/UltiSnips`
+* To deal with conflicting pop up menu access between `UltiSnips` & `Deoplete`, use this config snippet, currently housed in the plugins configurations 
+* They are accessible from `deoplete` by tabbing and then selecting the completion with `Ctrl+j` & continuing to hit that key combo to go through each insertion point of the snippet
+
+
 
 
 To-Do's
 -------
 
 * Miscellaneous
-  * [x] Install Script
-  * [x] Plugin Manager
-  * [x] Tmux integration
-  * [x] NERDTree
-  * [x] Pane Management w/ Keymaps
-  * [x] Sufficient Defaults
-  * [x] `foldmethod=marker` for vim & sh
-  * [x] `noh` binding, using leader key
-  * [ ] Snippets [`Github: SirVer/ultisnips`][14]
-  * [ ] Better folding techniques
-    * A good [guide][12]
-  * [ ] Class & Function Tags
-  * [ ] mvim
-  * [ ] Update Scripts
-  * [ ] Bash Aliases "mevim"
-  * [ ] Improve portability with xdg & dynamic filepaths: [link][100]
-  * [ ] indentation grids
-  * [ ] Basic neovim terminal keymaps, like [this][11] maybe?
-    * just use a light `|` character
+	* [x] Install Script
+	* [x] Plugin Manager
+	* [x] Tmux integration
+	* [x] NERDTree
+	* [x] Pane Management w/ Keymaps
+	* [x] Sufficient Defaults
+	* [x] `foldmethod=marker` for vim & sh
+	* [x] `noh` binding, using leader key
+	* [ ] Snippets [`Github: SirVer/ultisnips`][14]
+	* [ ] Better folding techniques
+	  * A good [guide][12]
+	* [ ] Class & Function Tags
+	* [ ] mvim
+	* [ ] Update Scripts
+	* [ ] Bash Aliases "mevim"
+	* [ ] Improve portability with xdg & dynamic filepaths: [link][100]
+	* [ ] indentation grids
+	* [ ] Basic neovim terminal keymaps, like [this][11] maybe?
+	  * just use a light `|` character
 * FuzzyFinder with Keymaps
   * [x] fuzzy finder
-    * `fzf.vim` installed
-    * `<leader>+f` opens `Files:` command to search for files
+	  * `fzf.vim` installed
+	  * `<leader>+f` opens `Files:` command to search for files
   * [ ] fzf & ripgrep function to search notes directory & open the selected file
 * Markdown
-  * [x] `noh` binding, using leader key
-  * [x] External Renderer
-    * Handled by `vim-markdown-composer`
-  * [x] Pandoc Integration
-    * handled by `vim-pandoc`
-    * [ ] update `init.vim` to only load by filetype
-  * [ ] External pandoc hooks
-  * [ ] table formatting
-  * [ ] Distraction free mode [goyo][15]
-  * [ ] Concealer options
-  * [ ] Auto fold h2 & lower
-  * [ ] Block Editing
-  * [ ] Highlighting
-  * [ ] Linting Grammar & Spelling *(write-good?)*
-  * [ ] Latex Blocks
-  * [ ] Ctags integration?
-  * [ ] Automatic references link or bibilography
-  * [ ] Better moving through large blocks of text
-    * Perhaps using hard/soft wraps?
-    * Perhaps using block focusing, where only one block is seen by choice
-    * Should have some keymaps to better move through a block
-  * [ ] Some kind of *org-mode*-like features
-    * Perhaps `vimwiki`
-    * concealer syntaxes for markdown
-  * [ ] Prose focused writing mode, *(think iA writer)*
-  * [ ] Dictionary & Thesaurus features
+	* [x] `noh` binding, using leader key
+	* [x] External Renderer
+		* Handled by `vim-markdown-composer`
+	* [x] Pandoc Integration
+		* handled by `vim-pandoc`
+		* [ ] update `init.vim` to only load by filetype
+	* [ ] External pandoc hooks
+	* [ ] table formatting
+	* [ ] Distraction free mode [goyo][15]
+	* [ ] Concealer options
+	* [ ] Settings from this [article](https://hackernoon.com/vim-for-writers-ee15d2a8f512)
+	* [ ] Auto fold h2 & lower
+	* [ ] Block Editing
+	* [ ] Highlighting
+	* [ ] Linting Grammar & Spelling *(write-good?)*
+	* [ ] Latex Blocks
+	* [ ] Ctags integration?
+	* [ ] Automatic references link or bibilography
+	* [ ] Better moving through large blocks of text
+		* Perhaps using hard/soft wraps?
+		* Perhaps using block focusing, where only one block is seen by choice
+		* Should have some keymaps to better move through a block
+	* [ ] Some kind of *org-mode*-like features
+		* Perhaps `vimwiki`
+		* concealer syntaxes for markdown
+	* [ ] Prose focused writing mode, *(think iA writer)*
+	* [ ] Dictionary & Thesaurus features
 * Javascript
-  * [x] Proper Syntax & Spacing
-    * handled by `vim-jsx` & `vim-javascript`
-  * [x] JSX recognition
-  * [ ] Folding 
-  * [ ] ternjs with deoplete
-  * [ ] graphQL highlighting
-  * [ ] Snippets
-  * [ ] JSDocs
-    * [ ] `vim-jsdoc`
-  * [ ] Function parameter completion
-    * [ ] `jspc.vim`?
-  * [ ] CTags support
-    * consider `ramitos/jsctags`
-  * [ ] EditorConfigs
-  * [ ] Emmet configs for JSX
-  * [ ] Local & Import Autocomplete
+	* [x] Proper Syntax & Spacing
+		* handled by `vim-jsx` & `vim-javascript`
+	* [x] JSX recognition
+	* [ ] Folding 
+	* [ ] ternjs with deoplete
+	* [ ] graphQL highlighting
+	* [ ] Snippets
+	* [ ] JSDocs
+		* [ ] `vim-jsdoc`
+	* [ ] Function parameter completion
+		* [ ] `jspc.vim`?
+	* [ ] CTags support
+		* consider `ramitos/jsctags`
+	* [ ] EditorConfigs
+	* [ ] Emmet configs for JSX
+	* [ ] Local & Import Autocomplete
 * HTML & CSS
-  * [ ] Emmet & Keymaps
-  * [ ] Tag Surrounds
-  * [ ] File & Local Autocomplete
-  * [ ] RGB highlighting
+	* [ ] Emmet & Keymaps
+	* [ ] Tag Surrounds
+	* [ ] File & Local Autocomplete
+	* [ ] RGB highlighting
 * Go
-  * [ ] Linting
-  * [ ] Autocompletion
-  * [ ] Basic doctype plugin
-  * [ ] Style & config defaults, use [this][09] as a guide
-  * [ ] NeoSnippet
-  * [ ] `delve` for debugging
+	* [ ] Linting
+	* [ ] Autocompletion
+	* [ ] Basic doctype plugin
+	* [ ] Style & config defaults, use [this][09] as a guide
+	* [ ] NeoSnippet
+	* [ ] `delve` for debugging
 * Python
-  * [ ] Linting
-  * [ ] External Running
-  * [ ] Beautify
-  * [ ] Autocomplete
-  * [ ] Horiz Ruler
+	* [ ] Linting
+	* [ ] External Running
+	* [ ] Beautify
+	* [ ] Autocomplete
+	* [ ] Horiz Ruler
 * Appearance
-  * [x] fix `PaperColor` highlighting for conceals
-    * handled by chancing `Conceal` option in `colors/PaperColor.vim`
-  * [ ] Nice low contrast theme with bells & whistles [`seoul256`][16]
-  * [ ] Gruvbox theme
-  * [ ] `ayu.vim`
-  * [ ] General concealers
-    * [ ] const/var/let
+	* [x] fix `PaperColor` highlighting for conceals
+		  * handled by chancing `Conceal` option in `colors/PaperColor.vim`
+	* [ ] Nice low contrast theme with bells & whistles [`seoul256`][16]
+	* [ ] Gruvbox theme
+	* [ ] `ayu.vim`
+	* [ ] General concealers
+		  * [ ] const/var/let
 
-## References
+References
+----------
+
 1. [Github/rafi/vim-config: A good example of a config][01]
 2. [vi.stackexchange: Windows Neovim Setup (config location hierarchy)][02]
 3. [CoderOnCode: Vim is the Perfect IDE][03]
@@ -254,6 +302,10 @@ To-Do's
 15. [Github: junnegun/goyo.vim - Distraction-Free Writting][15]
 16. [Github: junnegun/seoul256][16]
 17. [r/vim: Great Notetaking Configs][17]
+18. [Flawed but useful overview on deoplete with snips, & tern][18]
+19. [Github: carlitux/deoplete-ternjs][19]
+20. [Github: ternjs/tern_for_vim][20]
+21. [TernJS: Reference Manual - Needed to configure local TernJs][21]
 
 
 [01]: https://github.com/rafi/vim-config "Github/rafi/vim-config: A good example of a config"
@@ -273,5 +325,9 @@ To-Do's
 [15]: https://github.com/junegunn/goyo.vim "Github: junnegun/goyo.vim - Distraction-Free Writting"
 [16]: https://github.com/junegunn/seoul256.vim "Github: junnegun/seoul256"
 [17]: https://www.reddit.com/r/vim/comments/2r24nm/note_taking_using_vim_and_pandocs/ "r/vim: Great Notetaking Configs"
+[18]: https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/ "Flawed but useful overview on deoplete with snips, & tern"
+[19]: https://github.com/carlitux/deoplete-ternjs "Github: carlitux/deoplete-ternjs"
+[20]: https://github.com/ternjs/tern_for_vim "Github: ternjs/tern_for_vim"
+[21]: http://ternjs.net/doc/manual.html "TernJS: Reference Manual - Needed to configure local TernJs"
 
 [100]: http://bit.ly/2y0UkPU

@@ -47,3 +47,4 @@ set foldlevel=99
 " specify foldmethod by filetype
 autocmd BufRead,BufNewFile   *.sh,*.vim set foldmethod=marker
 "}}}
+

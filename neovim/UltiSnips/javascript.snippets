@@ -1,0 +1,26 @@
+#
+#  React
+#
+
+#
+## create class component
+#
+
+snippet rcc "create class component" b
+import React, { ${1:PropTypes, }Component } from 'react';
+
+class ${2:ClassComponent} extends Component {
+
+	$0
+	render() {
+		return (
+			${4:<div>
+			  $5
+			</div}
+		);
+	}
+}
+
+${3:export default $2;}
+endsnippet
+

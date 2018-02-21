@@ -9,6 +9,10 @@
 " A segmented vim config file that initializes plugins.
 " Also, performs actions that should come first
 
+" Start by defining which plugins to use
+let g:airline_enabled = 1 " my custom var to enable airline
+let g:my_snippet_manager = 'ultisnips' "specify which snippet engine
+let g:my_markdown_engine = 'pandoc' " which markdown, pandoc? markdown?
 
 " Start by loading pluguns
 " Specify a directory for plugins
@@ -19,7 +23,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-
 
 " begin plugin list, NOTHING BUT PLUGINS UNTIL plug#end() call
 " TODO make this reference to the plugin folder dynamic based dotfile location
@@ -32,15 +35,39 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " vim-tmux-navigator to integrate panes with tmux
 Plug 'christoomey/vim-tmux-navigator'
 
+" Completion & Snippets {{{
 " deoplete autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
+
+" Snippets
+" Implements a global var to determine if ultisnips should be used
+if g:my_snippet_manager ==? 'ultisnips'
+  Plug 'sirver/ultisnips' "| Plug 'honza/vim-snippets'
+elseif g:my_snippet_manager ==? 'neosnippet'
+  Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
+endif
+
+" TernJS
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
+
+" JSPC - Parameter Completion
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+" }}}
+" Status Line {{{
+if g:airline_enabled
+  Plug 'powerline/fonts', { 'do': './install.sh' }
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+endif
+" Plug 'mkitt/tabline.vim'
+" }}}
+
 
 " NERD commenter for better filetype comments
 Plug 'scrooloose/nerdcommenter'
-"
-" airline statusbar HUD
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -63,18 +90,22 @@ Plug 'tpope/vim-git'
 " TODO: Find out if there's a good on-demand way to load this
 Plug 'tpope/vim-fugitive'
 
-" ultisnips
-" Plug 'SirVer/ultisnips'
+" markdown{{{
 
-" markdown
 " vim-pandoc 
-" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
-" Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
+" TODO try out vim-markdown at some point
+if g:my_markdown_engine ==? 'pandoc'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+  Plug 'vim-pandoc/vim-pandoc'
+  " Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
+  " Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
+elseif g:my_markdown_engine ==? 'markdown'
+  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+endif
+
 " Code to execute when the plugin is lazily loaded on demand
-Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
-autocmd! User goyo.vim echom 'Goyo is now loaded!'
+Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'pandoc'] }
+" autocmd! User goyo.vim echom 'Goyo is now loaded!'
 
 " euclio/vim-markdown-composer a rust-based web server that live-renders markdown
 function! BuildComposer(info)
@@ -88,6 +119,9 @@ function! BuildComposer(info)
 endfunction
 
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+"}}}
+
+
 
 " Initialize plugin system
 call plug#end()
