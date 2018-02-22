@@ -18,6 +18,7 @@ Keymaps
   * `<leader>h`: Disable highlights
 * Control `^SOMEKEY`
   * `^j`: during insert will expand ultisnips if detected by deoplete & will jump through snippet insertions when repeated
+  * In the future, `supertab` can be used to defined smarter behavior for the tab key so everything can be managed there
 * Pane Controls
 
 
@@ -157,6 +158,10 @@ Completion
 * `sudo npm i -g tern` is required to install on local system
 * `tern` will also need to be configured with a `.tern-project` specific to the project or local userspace
   * The Tern [documentation][21] is a good pace to start
+* Even better tab behavior can be creating by watching states of ultisnips & deoplete and using supertab functions
+  * this [dotfile][22] shows it might be possible to make it work for just `Tab` & `Enter` keys
+    * I tried it but it didn't quite work
+    * The failed test is in the branch `neo/experimental`
 * if the plugin system doesn't automatically handle the installation of node packs for the plugins make sure deoplete-tern has its plug dir run it
   * same for [tern_for_vim][20]
 * `tern_for_vim` & `deoplete-ternjs` needs some improvements like...
@@ -200,6 +205,7 @@ To-Do's
 	* [ ] Class & Function Tags
 	* [ ] mvim
 	* [ ] Update Scripts
+    * [ ] Smarter tabs, [this][22] is a good place to start
 	* [ ] Bash Aliases "mevim"
 	* [ ] Improve portability with xdg & dynamic filepaths: [link][100]
 	* [ ] indentation grids
@@ -306,6 +312,7 @@ References
 19. [Github: carlitux/deoplete-ternjs][19]
 20. [Github: ternjs/tern_for_vim][20]
 21. [TernJS: Reference Manual - Needed to configure local TernJs][21]
+22. [Github: simonweil/dotfiles (addresses smarttab for everything with tab & enter][22]
 
 
 [01]: https://github.com/rafi/vim-config "Github/rafi/vim-config: A good example of a config"
@@ -329,5 +336,6 @@ References
 [19]: https://github.com/carlitux/deoplete-ternjs "Github: carlitux/deoplete-ternjs"
 [20]: https://github.com/ternjs/tern_for_vim "Github: ternjs/tern_for_vim"
 [21]: http://ternjs.net/doc/manual.html "TernJS: Reference Manual - Needed to configure local TernJs"
+[22]: https://github.com/simonweil/dotfiles/blob/master/nvimrc "Github: simonweil/dotfiles (addresses smarttab for everything with tab & enter"
 
 [100]: http://bit.ly/2y0UkPU
