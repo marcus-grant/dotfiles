@@ -16,8 +16,8 @@ Keymaps
   * `<leader>l`: Toggle `vim-javascript` concealing features
   * `<leader>f`: Bring up fzf file search with command `Files`
   * `<leader>h`: Disable highlights
-* Control `^SOMEKEY`
-  * `^j`: during insert will expand ultisnips if detected by deoplete & will jump through snippet insertions when repeated
+* Completions:
+
 * Pane Controls
 
 

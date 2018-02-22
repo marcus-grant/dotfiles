@@ -80,22 +80,84 @@ if exists('g:plugs["tern_for_vim"]')
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
 
-" autocomplete
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-"
-" TODO: shouldn't this be reversed?
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:SuperTabDefaultCompletionType = "<c-n>" " Make the tabing on completion menu go from top to bottom
 
-" Bind the PopUpMenu for deoplete to deal better with ultisnips
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" deoplete + neosnippet + autopairs - taken from http://bit.ly/2BFJFem
-" let g:AutoPairsMapCR=0
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#enable_smart_case = 1
-" imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+
+""" Ultisnip & Deoplete Maps Coordination
+" from - https://github.com/simonweil/dotfiles/blob/master/nvimrc#L29-L85
+" New segment to join deo, ulti, super, tern & jspc controls
+"
+" Don't map any tabs, I'll do it later
+let g:UltiSnipsExpandTrigger = '<NOP>'
+let g:UltiSnipsJumpForwardTrigger = '<NOP>'
+let g:UltiSnipsJumpBackwardTrigger = '<NOP>'
+let g:SuperTabMappingForward = '<NOP>'
+let g:SuperTabMappingBackward = '<NOP>'
+" Don't unmap my mappings
+let g:UltiSnipsMappingsToIgnore = [ "SmartTab", "SmartShiftTab" ]
+
+" Make <CR> smart
+let g:ulti_expand_res = 0
+function! Ulti_ExpandOrEnter()
+  " First try to expand a snippet
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res
+    " if successful, just return
+    return ''
+  elseif pumvisible()
+    " if in completion menu - just close it and leave the cursor at the
+    " end of the completion
+    return deoplete#mappings#close_popup()
+  else
+    " otherwise, just do an "enter"
+    return "\<return>"
+  endif
+endfunction
+inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
+
+" Enable tabbing and shift-tabbing through list of results
+function! g:SmartTab()
+  if pumvisible()
+    return SuperTab("n")
+  else
+    call UltiSnips#JumpForwards()
+    if g:ulti_jump_forwards_res == 0
+      return SuperTab("n")
+    endif
+    return ''
+  endif
+endfunction
+inoremap <silent> <tab> <C-R>=g:SmartTab()<cr>
+snoremap <silent> <tab> <Esc>:call g:SmartTab()<cr>
+
+function! g:SmartShiftTab()
+  if pumvisible()
+    return SuperTab("p")
+  else
+    call UltiSnips#JumpBackwards()
+    if g:ulti_jump_backwards_res == 0
+      return SuperTab("p")
+    endif
+    return ''
+  endif
+endfunction
+inoremap <silent> <s-tab> <C-R>=g:SmartShiftTab()<cr>
+snoremap <silent> <s-tab> <Esc>:call g:SmartShiftTab()<cr>
+
+" TODO: reorganize so that these settings arent repeated
+" reset the tab settings
+set smartindent     " chose which setting based off file
+set expandtab		" insert spaces when TAB is pressed
+set tabstop=4		" default spaces used for tabs as 4
+set shiftwidth=4 " indentation increments when using '<' & '>'
+" Setting tab witdh by file type
+autocmd Filetype html setlocal tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
+autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+
+
+
+
 
 " Check for OS type, if mac then set python path
 if has('macunix')
@@ -103,28 +165,6 @@ if has('macunix')
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
 
-" Ultisnips
-
-if g:my_snippet_manager == 'ultisnips'
-    let g:UltiSnipsExpandTrigger="<C-j>"
-
-    " Configuration for custom snips
-    " let g:UltiSnipsSnippetsDir = "~/dotfiles/neovim/snips"
-    " let g:UltiSnipsSnippetDirectories = ["UltiSnips", "snips"]
-    "
-    " Trigger configuration
-    " let g:UltiSnipsExpandTrigger='<tab>'
-    " let g:UltiSnipsJumpForwardTrigger='<C-r>'
-    " let g:UltiSnipsJumpBackwardTrigger='<C-q>'
-    "
-    " How to open ultisnips ediiting
-    " let g:UltiSnipsEditSplit = 'vertical'
-    "
-    " Configure snips to use python3
-    " let g:UltiSnipsUsePythonVersion = 3
-else
-	echoerr "You have set an invalid value for `g:my_snippet_manager`"
-endif
 
 
 
