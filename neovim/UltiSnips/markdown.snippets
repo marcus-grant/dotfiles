@@ -1,4 +1,35 @@
+global !p
+def double_to_single_digit_num(inp):
+    return inp[1:] if inp[:1] == '0' else inp
+
+
+def bar_for_text(inp, symbol):
+	return '{0}'.format(symbol * len(inp))
+
+def repeated_symbols(symbol, times):
+	return '{0} '.format(symbol * times)
+
+
+endglobal
+
+
 snippet reflink "Create numbered reference link" b
-${1:99}. [${2: link-text}][${1: 99}]
-[${1: 99}][${2: link-text}]
+`!p snip.rv = double_to_single_digit_num(t[1])`. [${2:ref_text}][$1]
+[$1]: ${3:some-url.com} "$2"
+endsnippet
+
+
+snippet head1 "Create h1 Heading" b
+${1:HEADING_TEXT}
+`!p snip.rv = bar_for_text(t[1], '=')`
+endsnippet
+
+snippet head2 "Create h2 Heading" b
+${1:HEADING_TEXT}
+`!p snip.rv = bar_for_text(t[1], '-')`
+endsnippet
+
+snippet head3 "Create h3 Heading" b
+`!p snip.rv = repeated_symbols('#', 3)` ${1:HEADING_TEXT}
+
 endsnippet
