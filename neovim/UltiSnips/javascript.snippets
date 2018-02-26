@@ -6,21 +6,53 @@
 ## create class component
 #
 
-snippet rcc "create class component" b
-import React, { ${1:PropTypes, }Component } from 'react';
-
-class ${2:ClassComponent} extends Component {
-
-	$0
-	render() {
-		return (
-			${4:<div>
-			  $5
-			</div}
-		);
-	}
+snippet RCCC "create class component" b
+class ${1:ClassComponent} extends Component {
+  constructor(props) {
+	super(props);
+	this.state = {
+	};
+  }
+  $0
+  render() {
+	return (
+	);
+  }
 }
 
 ${3:export default $2;}
 endsnippet
 
+#
+## import statemt for react
+#
+snippet RIRP "Import for React & (opt) PropTypes" b
+import React, { Component } from 'react';
+${1:import PropTypes from 'prop-types';}
+endsnippet
+
+#
+# functional component with prop types
+#
+snippet RFCPT "Functional Component with PropTypes" b
+const $1 = (props) => {
+  return (
+  );
+};
+$1.defaultProps = {
+};
+
+$1.propTypes = {
+  $0
+};
+endsnippet
+
+snippet RCSF "Change react state with an arrow" b
+this.$1 = this.$1.bind(this);
+
+$1 = (${2: }) => {
+  this.setState(prevState => {
+	return $3;
+  });
+}
+endsnippet
