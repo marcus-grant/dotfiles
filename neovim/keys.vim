@@ -2,24 +2,15 @@
 " segmented config file specific to setting up keymaps
 
 
-" leader keymaps
+""" Leader Maps (Global ones) {{{
 " ------------------------------------------------------------------------------
 "  leader is comma key (while in normal mode)
 let mapleader=","
 " disable search highlights with leader+h
 nnoremap <leader>h :noh<cr>
+" }}}
 
-" text modification scripts
-" ------------------------------------------------------------------------------
-" Clear the currently cursor'd line
-nnoremap -d dd
-" Clear the currently cursor'd line & go to insert mode (double c's)
-nnoremap -c ddO
-" Insert newline without entering insert mode
-
-
-" pane controls
-" ------------------------------------------------------------------------------
+""" Pane Controls {{{
 " pane splits <leader>+\ splits right, <leader>+- splits down
 nnoremap <leader>\ <C-w>v
 nnoremap <leader>- <C-w>s
@@ -57,7 +48,18 @@ nnoremap <leader>= <C-w>=
 " swap splits
 nnoremap <leader>s <C-w>r
 
-" terminal keymaps {{{
+"}}}
+
+" text modification scripts {{{
+"================================
+" Clear the currently cursor'd line
+nnoremap -d dd
+" Clear the currently cursor'd line & go to insert mode (double c's)
+nnoremap -c ddO
+" Insert newline without entering insert mode
+" }}}
+
+""" Terminal Buffer Keymaps {{{
 if has('nvim')
     " Make esc leave terminal mode
     tnoremap <Esc> <C-\><C-n>
@@ -79,5 +81,22 @@ if has('nvim')
   endif
 " }}}
 
-" fzf
+" fzf {{{
+"================================
 nnoremap <leader>f :Files<cr>
+" }}}
+
+""" Copy to Clipboard {{{
+set clipboard+=unnamedplus
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+"}}}
