@@ -37,6 +37,14 @@ import React, { Component } from 'react';
 ${1:import PropTypes from 'prop-types';}
 endsnippet
 
+snippet RPT "PropTypes definitions" b
+$1.propTypes = {
+};
+
+$1.defaultProps = {
+};
+endsnippet
+
 #
 # functional component with prop types
 #
@@ -61,6 +69,10 @@ $1 = (${2: }) => {
 	return $3;
   });
 }
+endsnippet
+
+snippet RBF "Handles class function binding" b
+this.${1:functionName} = this.$1.bind(this);
 endsnippet
 
 # TernJs Configs to Use
