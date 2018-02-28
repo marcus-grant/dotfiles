@@ -52,12 +52,7 @@ let g:deoplete#omni#functions.javascript = [
 
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}
-" let g:deoplete#sources['javascript'] = ['file', 'ultisnips', 'ternjs', 'buffer']
-" let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs', 'buffer']
-" let g:deoplete#sources.javascript = ['buffer', 'tern', 'file', 'ultisnips']
-" let g:deoplete#sources.javascript = ['file', 'ultisnips', 'ternjs', 'buffer']
-" let g:deoplete#sources.javascript.jsx = ['file', 'ultisnips', 'ternjs', 'buffer']
-let g:deoplete#sources.javascript = ['buffer', 'tern', 'file', 'ultisnips']
+let g:deoplete#sources.javascript = ['buffer', 'file', 'ultisnips', 'tern']
 let g:deoplete#sources#ternjs#docs = 1
 let g:deoplete#file#enable_buffer_path=1
 let g:tern#command = ['tern']
@@ -75,7 +70,7 @@ if exists('g:plugs["tern_for_vim"]')
   " Enable excellent keyboard shortcuts
   let g:tern_map_keys=1
   " Display argument type hints when the cursor is left over a function
-  let g:tern_show_argument_hints = 'on_hold'
+  " let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 1
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif

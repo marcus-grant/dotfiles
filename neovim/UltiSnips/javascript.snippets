@@ -20,7 +20,13 @@ class ${1:ClassComponent} extends Component {
   }
 }
 
-${3:export default $2;}
+$1.propTypes = {
+};
+
+$1.defaultProps = {
+};
+
+export ${2:default} $1
 endsnippet
 
 #
@@ -54,5 +60,36 @@ $1 = (${2: }) => {
   this.setState(prevState => {
 	return $3;
   });
+}
+endsnippet
+
+# TernJs Configs to Use
+snippet ternConfig "Default TernJS Config" b
+Request: {
+  "query": {
+	"type": "completions",
+	"types": true,
+	"depths": true,
+	"filter": true,
+	"caseInsensitive": false,
+	"guess": true,
+	"sort": false,
+	"expandWordForward": true,
+	"includeKeywords": false,
+	"inLiteral": true,
+	"file": "#0",
+	"end": {
+	  "line": 2,
+	  "ch": 6
+	},
+	"lineCharPositions": true
+  },
+  "files": [
+	{
+	  "type": "full",
+	  "name": "test.js",
+	  "text": "import React from 'react';\nReact.\n"
+	}
+  ]
 }
 endsnippet
