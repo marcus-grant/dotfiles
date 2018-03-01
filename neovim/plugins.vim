@@ -70,7 +70,7 @@ if exists('g:plugs["tern_for_vim"]')
   " Enable excellent keyboard shortcuts
   let g:tern_map_keys=1
   " Display argument type hints when the cursor is left over a function
-  " let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 1
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
