@@ -90,6 +90,9 @@ Plug 'tpope/vim-git'
 " TODO: Find out if there's a good on-demand way to load this
 Plug 'tpope/vim-fugitive'
 
+" Python virtual env workaround
+" Plug 'plytophogy/vim-virtualenv'
+
 " markdown{{{
 
 " vim-pandoc 
