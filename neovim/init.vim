@@ -12,7 +12,7 @@
 " Start by defining which plugins to use
 let g:airline_enabled = 1 " my custom var to enable airline
 let g:my_snippet_manager = 'ultisnips' "specify which snippet engine
-let g:my_markdown_engine = 'pandoc' " which markdown, pandoc? markdown?
+let g:my_markdown_engine = 'vim-markdown' " which markdown, pandoc? markdown?
 
 " Start by loading pluguns
 " Specify a directory for plugins
@@ -102,7 +102,7 @@ if g:my_markdown_engine ==? 'pandoc'
   Plug 'vim-pandoc/vim-pandoc'
   " Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
   " Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
-elseif g:my_markdown_engine ==? 'markdown'
+elseif g:my_markdown_engine ==? 'vim-markdown'
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 endif
 
