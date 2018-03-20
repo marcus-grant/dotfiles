@@ -110,8 +110,10 @@ au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
 au FileType go nmap <F10> :GoTest -short<cr>
 " bring up test coverage mode
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+" highlihgt same references when hovering in normal mode
+let g:go_auto_sameids = 1
 " reveal types by hovering cursor
-let go:go_auto_type = 1
+let g:go_auto_type_info = 1
 " Jump to definition using F12
 " TODO check if this can be replaced with C-g for all filetypes
 au FileType go nmap <C-g> <Plug>(go-def)
