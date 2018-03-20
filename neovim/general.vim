@@ -13,8 +13,13 @@ filetype plugin on
 filetype plugin indent on
 "set smartindent     " chose which setting based off file
 set expandtab		" insert spaces when TAB is pressed
+" Set default tab behaviors and then specific filetypes with 2 spaces
 set tabstop=4		" default spaces used for tabs as 4
-set shiftwidth=2	" indentation increments when using '<' & '>'
+set shiftwidth=4	" indentation increments when using '<' & '>'
+au FileType javascript setlocal tabstop=2 shiftwidth=2
+au FileType html setlocal tabstop=2 shiftwidth=2
+" Go specific
+au FileType go set softtabstop=4
 
 " TODO figure out which settings need to be changed by OS, by default use unix
 " host OS settings

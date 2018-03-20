@@ -11,8 +11,9 @@ let NERDTreeQuitOnOpen=1
 nnoremap <leader>t :NERDTree<CR>:NERDTreeFocus<CR>
 nnoremap <leader>T :NERDTreeFocus<CR>
 
+"================================
 " ALE Linting options : http://bit.ly/2wY3Kr3
-" ----------------------------------------------------------
+"================================
 "  linters
 let g:ale_linters = {
 \  'javascript': ['eslint'],
@@ -27,8 +28,10 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 " TODO: test with flow on non typescript
 " let g:ale_completion_enabled = 1
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+" let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
+let g:ale_sign_error = '⤫'
+" let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 
@@ -168,6 +171,25 @@ let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
 
+
+"================================
+"Go settings
+"================================
+"    highlighting settings
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 1 " nifty highlighter for same named entities
+" auto import of new deps
+let g:go_fmt_command = "goimports"
+" linting is handled in ALE section
+" JSON tagging and transform to make JSON work easier
+let g:go_addtags_transform = "camelcase"
 
 " Mardown
 

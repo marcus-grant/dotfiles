@@ -79,6 +79,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
+"================================
+" Go
+"================================
+" vim-go for syntax and basic regognition
+" swiss army knife for go (compile, install, test, run, debug, complettion,
+" gotodef, docs, rename/refactor, test/coverage, taggs, lint)
+Plug 'fatih/vim-go'
+
 " ALE - Asynchronous Lint Engine
 Plug 'w0rp/ale'
 
