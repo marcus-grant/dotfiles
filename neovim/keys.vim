@@ -107,13 +107,18 @@ vnoremap <leader>P "+P
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
 au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+" Go to the definition of something using F12
+au FileType go nmap <F12> <Plug>(go-def)
 au FileType go nmap <F10> :GoTest -short<cr>
 " bring up test coverage mode
-au FileType go nmap <F9> :GoCoverageToggle -short<cr>
-" highlihgt same references when hovering in normal mode
-let g:go_auto_sameids = 1
-" reveal types by hovering cursor
-let g:go_auto_type_info = 1
+au FileType go nmap <F11> :GoCoverageToggle -short<cr>
 " Jump to definition using F12
 " TODO check if this can be replaced with C-g for all filetypes
 au FileType go nmap <C-g> <Plug>(go-def)
+" Keys to make debugging & running in delve a bit more pleasant
+" These are typical keys for most IDE's when debugging and running
+" F5 to run & to continue debugging
+au FileType go nmap <F5> :w<cr>:DlvDebug<cr>
+au FileType go nmap <F9> :DlvToggleBreakpoint<cr>
+" TODO: Add more later, and also consider them for other languages in debug
+
