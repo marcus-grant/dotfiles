@@ -24,18 +24,21 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
+" Begin plugin loading {{{
+"================================
 " begin plugin list, NOTHING BUT PLUGINS UNTIL plug#end() call
 " TODO make this reference to the plugin folder dynamic based dotfile location
 call plug#begin("~/.config/nvim/plugged/")
 " Plugins list, ONLY USE SINGLE QUOTES for references
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
+" TMUX {{{
+"================================
 " vim-tmux-navigator to integrate panes with tmux
 Plug 'christoomey/vim-tmux-navigator'
+" }}}
 
 " Completion & Snippets {{{
+"================================
 " deoplete autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
@@ -56,6 +59,7 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do'
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " }}}
+
 " Status Line {{{
 if g:airline_enabled
   Plug 'powerline/fonts', { 'do': './install.sh' }
@@ -65,41 +69,60 @@ endif
 " Plug 'mkitt/tabline.vim'
 " }}}
 
+" NERD {{{
+"================================
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " NERD commenter for better filetype comments
 Plug 'scrooloose/nerdcommenter'
+" }}}
 
-" fzf
+" fzf {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" }}}
 
+" Javascript Plugins{{{
+"================================
 " Improved JS & JSX support
 " load only for *.js & *.jsx extensions
 " TODO: accomplish some kind of lazy loading for this plugin for JS & JSX
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+" }}}
 
-"================================
-" Go
+" Go {{{
 "================================
 " vim-go for syntax and basic regognition
 " swiss army knife for go (compile, install, test, run, debug, complettion,
 " gotodef, docs, rename/refactor, test/coverage, taggs, lint)
 Plug 'fatih/vim-go'
 
+" Delve - go debugging
+Plug 'sebdah/vim-delve'
+" }}}
+
+" Linting {{{
 " ALE - Asynchronous Lint Engine
 Plug 'w0rp/ale'
+" }}}
 
-" Vim-git - syntax highlighting for git integrators
-" TODO: Find out if there's a good on-demand way to load this
-Plug 'tpope/vim-git'
-
+" Git {{{
+"================================
 " fuGITive - Best git wrapper ever
 " TODO: Find out if there's a good on-demand way to load this
 Plug 'tpope/vim-fugitive'
 
+" Vim-git - syntax highlighting for git integrators
+" TODO: Find out if there's a good on-demand way to load this
+Plug 'tpope/vim-git'
+" }}}
+
+" Still experimenting {{{
 " Python virtual env workaround
 " Plug 'plytophogy/vim-virtualenv'
+" }}}
 
 " markdown{{{
 
@@ -132,6 +155,9 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "}}}
 
+" End plugin loading
+"================================
+" }}}
 
 
 " Initialize plugin system
