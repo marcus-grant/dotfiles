@@ -18,7 +18,7 @@ set tabstop=4		" default spaces used for tabs as 4
 set shiftwidth=4	" indentation increments when using '<' & '>'
 au FileType javascript setlocal tabstop=2 shiftwidth=2
 au FileType html setlocal tabstop=2 shiftwidth=2
-" Go specific
+" Go specific ( might not be needed as go uses 4:4 format )
 au FileType go set softtabstop=4
 
 " TODO figure out which settings need to be changed by OS, by default use unix
@@ -53,3 +53,44 @@ set foldlevel=99
 autocmd BufRead,BufNewFile   *.sh,*.vim set foldmethod=marker
 "}}}
 
+" FZF - Jump to Tags
+function! s:tags_sink(line)
+  let parts = split(a:line, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent e' parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+function! s:tags()
+  if empty(tagfiles())
+    echohl WarningMsg
+    echom 'Preparing tags'
+    echohl None
+    call system('ctags -R')
+  endif
+
+  call fzf#run({
+  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  \            '| grep -v -a ^!',
+  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+  \ 'down':    '40%',
+  \ 'sink':    function('s:tags_sink')})
+endfunction
+
+command! Tags call s:tags()
+
+" FZF with RIPGREP, from http://bit.ly/2pJv5M3
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)

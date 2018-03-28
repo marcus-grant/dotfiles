@@ -79,7 +79,9 @@ if exists('g:plugs["tern_for_vim"]')
 endif
 
 " autocomplete
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-n>"
+autocmd FileType go let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 "
 " TODO: shouldn't this be reversed?
@@ -172,8 +174,7 @@ let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
 
 
-"================================
-"Go settings
+"Go settings  {{{
 "================================
 "    highlighting settings
 let g:go_highlight_build_constraints = 1
@@ -184,13 +185,21 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+" TODO: Look into a disable sameid highlighter key
 let g:go_auto_sameids = 1 " nifty highlighter for same named entities
-" auto import of new deps
+" auto import of new deps - with this, on save go will import the deps
 let g:go_fmt_command = "goimports"
 " linting is handled in ALE section
 " JSON tagging and transform to make JSON work easier
-let g:go_addtags_transform = "camelcase"
-
+" let g:go_addtags_transform = "camelcase"
+" reveal types by hovering cursor
+" TODO some massive errors occur with this plugin when using this option
+" Check back here on this issue to see any new updates that might arise
+" For now it must be disbaled - Link: http://bit.ly/2pGfgpC
+" let g:go_auto_type_info = 1
+" Go snips engine
+let g:go_snippet_engine = "ultisnips"
+"}}}
 " Mardown
 
 " vim-pandoc
