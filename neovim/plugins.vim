@@ -217,3 +217,10 @@ set nospell
 "  Turn off automatic opening of the specified browser
 let g:markdown_composer_open_browser = 0
 
+" custom plugin to detect & highlight docker files
+"================================
+" Detect the filetype
+au BufNewFile,BufRead [Dd]ockerfile,Dockerfile.*,*.Dockerfile set filetype=dockerfile
+" Apply the highlighting rules
+source ~/.config/nvim/syntax/dockerfile.vim
+
