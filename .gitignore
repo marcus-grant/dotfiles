@@ -15,7 +15,7 @@ i3/wallpaper-link
 #TODO: determine if /site is a good ignore (vimplug)
 *site/*
 *autoload/*
-neovim/plugged/*
+neovim/plugged/
 
 # theme.vim is a symlink to a color scheme inside colors/
 # inorder to allow differentiation between nvim installs, don't track this file
