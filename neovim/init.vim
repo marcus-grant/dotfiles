@@ -90,6 +90,7 @@ Plug 'junegunn/fzf.vim'
 " TODO: accomplish some kind of lazy loading for this plugin for JS & JSX
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'jparise/vim-graphql'
 " }}}
 
 " Go {{{
