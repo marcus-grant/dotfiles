@@ -111,9 +111,10 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hypercwd',
+    // 'hypercwd',
     'hyperlinks',
-    'hyperterm-gruvbox-dark',
+    'hyperterm-gruvbox',
+    // 'hyperterm-gruvbox-dark',
     // 'hyperterm-atom-dark',
   ],
 
