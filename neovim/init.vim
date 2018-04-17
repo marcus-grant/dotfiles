@@ -109,6 +109,11 @@ Plug 'sebdah/vim-delve'
 Plug 'w0rp/ale'
 " }}}
 
+" Python {{{
+"================================
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+" }}}
+
 " Git {{{
 "================================
 " fuGITive - Best git wrapper ever
@@ -172,3 +177,4 @@ so $HOME/.config/nvim/plugins.vim
 " so $HOME/.config/nvim/theme.vim
 so $HOME/.config/nvim/appearance.vim
 "so line.vim
+so $HOME/.config/nvim/pymode.vim
