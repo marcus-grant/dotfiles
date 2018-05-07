@@ -104,6 +104,13 @@ Plug 'fatih/vim-go'
 Plug 'sebdah/vim-delve'
 " }}}
 
+" Python {{{
+"================================
+" python-mode is the swiss army knif of vim development of python.
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+let g:pymode_python = 'python3'
+" }}}
+
 " Linting {{{
 " ALE - Asynchronous Lint Engine
 Plug 'w0rp/ale'
