@@ -163,6 +163,12 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "}}}
 
+" Test Running {{{
+"================================
+" vim-test
+Plug 'janko-m/vim-test'
+" }}}
+
 " End plugin loading
 "================================
 " }}}

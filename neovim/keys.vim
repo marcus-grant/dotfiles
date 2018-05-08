@@ -122,3 +122,12 @@ au FileType go nmap <F5> :w<cr>:DlvDebug<cr>
 au FileType go nmap <F9> :DlvToggleBreakpoint<cr>
 " TODO: Add more later, and also consider them for other languages in debug
 
+
+"================================
+" Vim Test Keys
+"================================
+nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g

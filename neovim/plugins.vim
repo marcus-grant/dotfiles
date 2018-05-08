@@ -224,3 +224,11 @@ au BufNewFile,BufRead [Dd]ockerfile,Dockerfile.*,*.Dockerfile set filetype=docke
 " Apply the highlighting rules
 source ~/.config/nvim/syntax/dockerfile.vim
 
+"================================
+" vim-test
+"================================
+let test#strategy = {
+  \ 'nearest': 'neovim',
+  \ 'file':    'neovim',
+  \ 'suite':   'basic',
+\}
