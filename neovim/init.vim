@@ -167,6 +167,8 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "================================
 " vim-test
 Plug 'janko-m/vim-test'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 " }}}
 
 " End plugin loading
