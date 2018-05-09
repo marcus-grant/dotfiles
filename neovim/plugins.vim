@@ -202,7 +202,8 @@ let g:go_snippet_engine = "ultisnips"
 "}}}
 " Mardown
 
-" vim-pandoc
+" vim-pandoc {{{
+"================================
 let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#folding#level = 2
 let g:pandoc#syntax#colorcolumn = 0
@@ -211,11 +212,13 @@ let g:pandoc#syntax#colorcolumn = 0
 let g:pandoc#folding#fdc = 0
 " leave spelling off by default & enable it by opting in
 set nospell
+" }}}
 
-" vim-markdown-composer
+" vim-markdown-composer {{{
 " ---------------------
 "  Turn off automatic opening of the specified browser
 let g:markdown_composer_open_browser = 0
+" }}}
 
 " custom plugin to detect & highlight docker files
 "================================
@@ -224,11 +227,14 @@ au BufNewFile,BufRead [Dd]ockerfile,Dockerfile.*,*.Dockerfile set filetype=docke
 " Apply the highlighting rules
 source ~/.config/nvim/syntax/dockerfile.vim
 
-"================================
-" vim-test
+" vim-test {{{
 "================================
 let test#strategy = {
   \ 'nearest': 'neovim',
   \ 'file':    'neovim',
   \ 'suite':   'basic',
 \}
+" TODO: Needs a way to specify which python version (3) to use
+
+" let test#python#runner = 'python3 pytest'
+" }}}
