@@ -78,6 +78,9 @@ if exists('g:plugs["tern_for_vim"]')
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
 
+" Python sourcing
+let g:deoplete#sources#jedi#server_timeout = 6
+
 " autocomplete
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-n>"

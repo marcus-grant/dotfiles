@@ -24,8 +24,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-" Begin plugin loading {{{
-"================================
 " begin plugin list, NOTHING BUT PLUGINS UNTIL plug#end() call
 " TODO make this reference to the plugin folder dynamic based dotfile location
 call plug#begin("~/.config/nvim/plugged/")
@@ -58,6 +56,9 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do'
 " JSPC - Parameter Completion
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Python Completion {{{
+"================================
+Plug 'zchee/deoplete-jedi'
 " }}}
 
 " Status Line {{{
@@ -169,10 +170,6 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
-" }}}
-
-" End plugin loading
-"================================
 " }}}
 
 
