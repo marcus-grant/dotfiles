@@ -85,10 +85,15 @@ let g:deoplete#sources#jedi#server_timeout = 6
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd FileType go let g:SuperTabDefaultCompletionType = "<c-n>"
+autocmd FileType python let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 "
 " TODO: shouldn't this be reversed?
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Improvement to make the preview window close after PUM dissapears
+" From http://bit.ly/2wxYLSi
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Bind the PopUpMenu for deoplete to deal better with ultisnips
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
