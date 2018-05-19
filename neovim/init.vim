@@ -14,6 +14,24 @@ let g:airline_enabled = 1 " my custom var to enable airline
 let g:my_snippet_manager = 'ultisnips' "specify which snippet engine
 let g:my_markdown_engine = 'vim-markdown' " which markdown, pandoc? markdown?
 
+" Set python3 path for virtualenv py3neovim
+" TODO for now this is disabled because pyenv is a PITA and will be vastly
+" different for each host distro/os
+" let g:python3_host_prog = '~/dotfiles/neovim/py3neovim/bin/python3.5.1'
+"python with virtualenv support
+" from https://realpython.com/vim-and-python-a-match-made-in-heaven/
+" this detects virtualenv and uses it, ill just have to install my dev deps
+" there
+" doesn't fucking work....
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
+
 " Start by loading pluguns
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -24,8 +42,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-" Begin plugin loading {{{
-"================================
 " begin plugin list, NOTHING BUT PLUGINS UNTIL plug#end() call
 " TODO make this reference to the plugin folder dynamic based dotfile location
 call plug#begin("~/.config/nvim/plugged/")
@@ -58,6 +74,9 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do'
 " JSPC - Parameter Completion
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Python Completion {{{
+"================================
+Plug 'zchee/deoplete-jedi'
 " }}}
 
 " Status Line {{{
@@ -90,6 +109,7 @@ Plug 'junegunn/fzf.vim'
 " TODO: accomplish some kind of lazy loading for this plugin for JS & JSX
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'jparise/vim-graphql'
 " }}}
 
 " Go {{{
@@ -103,9 +123,21 @@ Plug 'fatih/vim-go'
 Plug 'sebdah/vim-delve'
 " }}}
 
+" Python {{{
+"================================
+" python-mode is the swiss army knif of vim development of python.
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+let g:pymode_python = 'python3'
+" }}}
+
 " Linting {{{
 " ALE - Asynchronous Lint Engine
 Plug 'w0rp/ale'
+" }}}
+
+" Python {{{
+"================================
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " }}}
 
 " Git {{{
@@ -155,8 +187,12 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "}}}
 
-" End plugin loading
+" Test Running {{{
 "================================
+" vim-test
+Plug 'janko-m/vim-test'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 " }}}
 
 
@@ -171,3 +207,4 @@ so $HOME/.config/nvim/plugins.vim
 " so $HOME/.config/nvim/theme.vim
 so $HOME/.config/nvim/appearance.vim
 "so line.vim
+so $HOME/.config/nvim/pymode.vim

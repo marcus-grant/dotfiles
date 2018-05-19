@@ -78,14 +78,22 @@ if exists('g:plugs["tern_for_vim"]')
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
 
+" Python sourcing
+let g:deoplete#sources#jedi#server_timeout = 6
+
 " autocomplete
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd FileType go let g:SuperTabDefaultCompletionType = "<c-n>"
+autocmd FileType python let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 "
 " TODO: shouldn't this be reversed?
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Improvement to make the preview window close after PUM dissapears
+" From http://bit.ly/2wxYLSi
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Bind the PopUpMenu for deoplete to deal better with ultisnips
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -202,7 +210,8 @@ let g:go_snippet_engine = "ultisnips"
 "}}}
 " Mardown
 
-" vim-pandoc
+" vim-pandoc {{{
+"================================
 let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#folding#level = 2
 let g:pandoc#syntax#colorcolumn = 0
@@ -211,11 +220,13 @@ let g:pandoc#syntax#colorcolumn = 0
 let g:pandoc#folding#fdc = 0
 " leave spelling off by default & enable it by opting in
 set nospell
+" }}}
 
-" vim-markdown-composer
+" vim-markdown-composer {{{
 " ---------------------
 "  Turn off automatic opening of the specified browser
 let g:markdown_composer_open_browser = 0
+" }}}
 
 " custom plugin to detect & highlight docker files
 "================================
@@ -224,3 +235,14 @@ au BufNewFile,BufRead [Dd]ockerfile,Dockerfile.*,*.Dockerfile set filetype=docke
 " Apply the highlighting rules
 source ~/.config/nvim/syntax/dockerfile.vim
 
+" vim-test {{{
+"================================
+let test#strategy = {
+  \ 'nearest': 'neovim',
+  \ 'file':    'neovim',
+  \ 'suite':   'basic',
+\}
+" TODO: Needs a way to specify which python version (3) to use
+
+" let test#python#runner = 'python3 pytest'
+" }}}
