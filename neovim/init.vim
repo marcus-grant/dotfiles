@@ -117,7 +117,7 @@ Plug 'jparise/vim-graphql'
 " vim-go for syntax and basic regognition
 " swiss army knife for go (compile, install, test, run, debug, complettion,
 " gotodef, docs, rename/refactor, test/coverage, taggs, lint)
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Delve - go debugging
 Plug 'sebdah/vim-delve'

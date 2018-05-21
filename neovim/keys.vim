@@ -119,6 +119,7 @@ au FileType go nmap <C-g> <Plug>(go-def)
 " These are typical keys for most IDE's when debugging and running
 " F5 to run & to continue debugging
 au FileType go nmap <F5> :w<cr>:DlvDebug<cr>
+au FileType go nmap <F6> :w<cr>:GoRun<cr>
 au FileType go nmap <F9> :DlvToggleBreakpoint<cr>
 " TODO: Add more later, and also consider them for other languages in debug
 
