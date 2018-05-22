@@ -2,10 +2,11 @@
 #font = Monospace 14px
 #font = xos4 Terminus 16px
 #font = Hack 14px
-font = Inconsolata 15px
+# font = Inconsolata 15px
 #font = Fira Mono 11
 #font = Source Code Pro 13px
 #font = Consolas 14px
+font = Iosevka Medium 13px
 
 # Colors - copied from another file with *.scheme extension
 
