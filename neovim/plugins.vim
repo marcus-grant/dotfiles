@@ -148,6 +148,10 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 " Trim trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" From https://bit.ly/2kp8npv
+" Used to recognize & handle jsx comments
+let g:NERDCustomDelimiters = { 'javascript.jsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+
 
 
 "  Non-display airline settings
