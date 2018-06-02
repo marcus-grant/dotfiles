@@ -12,6 +12,9 @@
 " nnoremap <leader>T :NERDTreeFocus<CR>
 " Set nerdtree to toggle instead by using leader key
 nnoremap <leader>t :NERDTreeToggle<cr>
+" Set expand/collapse chars
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 "================================
 " ALE Linting options : http://bit.ly/2wY3Kr3
