@@ -6,10 +6,15 @@
 " NERDTree keymaps
 " ----------------------------------------------------------
 "  Automatically close NERDTree pane after selection
-let NERDTreeQuitOnOpen=1
+" let NERDTreeQuitOnOpen=1
 " Toggle NERDTree with leader + t
-nnoremap <leader>t :NERDTree<CR>:NERDTreeFocus<CR>
-nnoremap <leader>T :NERDTreeFocus<CR>
+" nnoremap <leader>t :NERDTree<CR>:NERDTreeFocus<CR>
+" nnoremap <leader>T :NERDTreeFocus<CR>
+" Set nerdtree to toggle instead by using leader key
+nnoremap <leader>t :NERDTreeToggle<cr>
+" Set expand/collapse chars
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 "================================
 " ALE Linting options : http://bit.ly/2wY3Kr3
@@ -148,6 +153,10 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 " Trim trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" From https://bit.ly/2kp8npv
+" Used to recognize & handle jsx comments
+let g:NERDCustomDelimiters = { 'javascript.jsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+
 
 
 "  Non-display airline settings
