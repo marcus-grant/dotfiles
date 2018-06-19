@@ -79,14 +79,22 @@ Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi'
 " }}}
 
+" UI {{{
+"================================
 " Status Line {{{
 if g:airline_enabled
   Plug 'powerline/fonts', { 'do': './install.sh' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 endif
+
 " Plug 'mkitt/tabline.vim'
+" Plug 'yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 " }}}
+
+" }}}
+
 
 " NERD {{{
 "================================
