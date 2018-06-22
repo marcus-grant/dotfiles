@@ -108,13 +108,13 @@ endsnippet
 
 
 # start any tag by enter "<" & then its name to give it and it will autoclose
-snippet '<[a-z]+[0-9]*' "Generic HTML Block tag (multiline & block)" r
-	<`!p snip.rv = match.group()[1:]`$1>
-		$0
-	</`!p snip.rv = match.group()[1:]`>
-endsnippet
-
+# snippet '<[a-z]+[0-9]*' "Generic HTML Block tag (multiline & block)" r
+#     <`!p snip.rv = match.group()[1:]`$1>
+#         $0
+#     </`!p snip.rv = match.group()[1:]`>
+# endsnippet
+#
 # start any tag with ">" then a name and it will create an inline element tag
-snippet '>[a-z]+[0–9]*' "Generic HTML tag builder inline” ir
-<`!p snip.rv = match.group()[1:]`$1>$0</`!p snip.rv = match.group()[1:]`>
-endsnippet
+# snippet '>[a-z]+[0–9]*' "Generic HTML tag builder inline” ir
+# <`!p snip.rv = match.group()[1:]`$1>$0</`!p snip.rv = match.group()[1:]`>
+# endsnippet
