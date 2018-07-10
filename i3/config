@@ -111,7 +111,8 @@ bindsym $mod+Shift+q kill
 # start program launcher
 # Commented out since rofi is being used
 #bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 600 -opacity "90" -font "System San Francisco Display 24"
+#bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 600 -opacity "90" -font "System San Francisco Display 24"
+bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 600 -opacity "90" -font "Cantarell 24"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
