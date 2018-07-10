@@ -17,6 +17,7 @@ set expandtab		" insert spaces when TAB is pressed
 set tabstop=4		" default spaces used for tabs as 4
 set shiftwidth=4	" indentation increments when using '<' & '>'
 au FileType javascript setlocal tabstop=2 shiftwidth=2
+au FileType typescript setlocal tabstop=2 shiftwidth=2
 au FileType html setlocal tabstop=2 shiftwidth=2
 " Go specific ( might not be needed as go uses 4:4 format )
 au FileType go set softtabstop=4

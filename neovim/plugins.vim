@@ -28,6 +28,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'javascript.jsx': ['eslint'],
+\   'typescript': ['tslint'],
 \}
 " lint on saves
 let g:ale_fix_on_save = 1
@@ -43,6 +44,7 @@ let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 " Deoplete
 " ----------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
+
 let g:deoplete#auto_complete_start_length = 2
 " Autocmd to conditionally enable deoplete using tab, c-n and ...?
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -89,6 +91,7 @@ let g:deoplete#sources#jedi#server_timeout = 6
 " autocomplete
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-n>"
+autocmd FileType typescript let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd FileType go let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd FileType python let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
