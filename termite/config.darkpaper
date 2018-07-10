@@ -1,12 +1,19 @@
 [options]
-#font = Monospace 14px
-#font = xos4 Terminus 16px
-#font = Hack 14px
+
 # font = Inconsolata 15px
 #font = Fira Mono 11
 #font = Source Code Pro 13px
 #font = Consolas 14px
-font = Iosevka Medium 13px
+# font = Iosevka Medium 13px
+#font = Sauce Code Pro Nerd Font Complete 13px
+# font = Iosevka Term Nerd Font Complete 13px
+font = Iosevka Term,Iosevka Nerd Font 13px
+# font = SauceCodePro Nerd Font Mono Medium 14px
+# font = mononoki Nerd Font Mono Medium 13px
+# font = GohuFont Nerd Font Mono 14px
+# font = Fira Mono for Powerline:style=Medium 13px
+# font = Inconsolata Nerd Font Mono 14px
+# font = Hack Nerd Font Mono 13px
 
 # Colors - copied from another file with *.scheme extension
 
