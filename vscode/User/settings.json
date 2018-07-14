@@ -1,0 +1,11 @@
+{
+    "window.menuBarVisibility": "toggle",
+    "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "workbench.colorTheme": "papercolor-vscode",
+    "editor.fontSize": 13,
+    // Controls the font family.
+  "editor.fontFamily": "'Iosevka Term', 'Fira Mono for Powerline','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "materialTheme.fixIconsRunning": false,
+  "editor.fontLigatures": true,
+  
+}
