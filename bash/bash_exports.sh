@@ -70,12 +70,14 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 # Rust's cargo package manager needs for there to be some kind of standard path
 export PATH="$HOME/.cargo/bin:$PATH"
+
 # Go's GOPATH
-# export PATH="$PATH:$HOME/bin/go/bin"
-export PATH="$PATH:$HOME/code/go/bin"
 # export GOPATH="$GOPATH:$HOME/bin/go"
-export GOPATH="$HOME/code/go"
-export GOBIN="$HOME/code/go/bin"
+#export GOBIN="$HOME/code/go/bin"
+# export PATH="$PATH:$HOME/bin/go/bin"
+export GOROOT="$HOME/.go"
+export GOBIN="$GOROOT/bin"
+export PATH="$PATH:$GOBIN"
 
 # pyenv - is a devops nightmare
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -109,7 +111,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # npm path at home
-npm config set prefix ~/.npm
+if [ -d ~/.npm ]; then
+    if hash npm 2>/dev/null; then
+        if [[ $EUID -ne 0 ]]; then
+            npm config set prefix ~/.npm
+        fi
+    fi
+fi
 export PATH="$PATH:$HOME/.npm/bin"
 
 # program opts
