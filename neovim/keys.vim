@@ -2,7 +2,7 @@
 " segmented config file specific to setting up keymaps
 
 
-""" Leader Maps (Global ones) {{{
+" Leader Maps (Global ones) {{{
 " ------------------------------------------------------------------------------
 "  leader is comma key (while in normal mode)
 let mapleader=","
@@ -10,7 +10,7 @@ let mapleader=","
 nnoremap <leader>h :noh<cr>
 " }}}
 
-""" Pane Controls {{{
+" Pane Controls {{{
 " pane splits <leader>+\ splits right, <leader>+- splits down
 nnoremap <leader>\ <C-w>v
 nnoremap <leader>- <C-w>s
@@ -101,8 +101,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 "}}}
 
-"================================
-" Go maps
+" Go maps {{{
 "================================
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
@@ -122,15 +121,15 @@ au FileType go nmap <F5> :w<cr>:DlvDebug<cr>
 au FileType go nmap <F6> :w<cr>:GoRun<cr>
 au FileType go nmap <F9> :DlvToggleBreakpoint<cr>
 " TODO: Add more later, and also consider them for other languages in debug
+" }}}
 
-"================================
-" Python Mode Keys
+" Python Mode Keys {{{
 "================================
 nmap <silent> <leader>ln :lnext<cr>
 nmap <silent> <leader>lp :lprevious<cr>
+" }}}
 
-"================================
-" Vim Test Keys
+" Vim Test Keys {{{
 "================================
 " Test Running
 nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
@@ -138,3 +137,4 @@ nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
 nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
 nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
+" }}}

@@ -9,11 +9,14 @@
 " A segmented vim config file that initializes plugins.
 " Also, performs actions that should come first
 
+" Plugin Selector Variables {{{
 " Start by defining which plugins to use
 let g:airline_enabled = 1 " my custom var to enable airline
 let g:my_snippet_manager = 'ultisnips' "specify which snippet engine
 let g:my_markdown_engine = 'vim-markdown' " which markdown, pandoc? markdown?
+" }}}
 
+" failed virtualenv experiment {{{
 " Set python3 path for virtualenv py3neovim
 " TODO for now this is disabled because pyenv is a PITA and will be vastly
 " different for each host distro/os
@@ -31,7 +34,9 @@ let g:my_markdown_engine = 'vim-markdown' " which markdown, pandoc? markdown?
 "   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
 "   execfile(activate_this, dict(__file__=activate_this))
 " EOF
+" }}}
 
+" Plugin selector variables {{{
 " Start by loading pluguns
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -41,11 +46,14 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
+"}}}
 
+" Start of plugin manager{{{
 " begin plugin list, NOTHING BUT PLUGINS UNTIL plug#end() call
 " TODO make this reference to the plugin folder dynamic based dotfile location
 call plug#begin("~/.config/nvim/plugged/")
 " Plugins list, ONLY USE SINGLE QUOTES for references
+" }}}
 
 " TMUX {{{
 "================================
@@ -59,20 +67,21 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 
-" Snippets
+" TernJS 
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
+
+" JSPC - Parameter Completion
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+" Snippets 
 " Implements a global var to determine if ultisnips should be used
 if g:my_snippet_manager ==? 'ultisnips'
   Plug 'sirver/ultisnips' "| Plug 'honza/vim-snippets'
 elseif g:my_snippet_manager ==? 'neosnippet'
   Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
 endif
-
-" TernJS
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
-
-" JSPC - Parameter Completion
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+"}}}
 
 " Python Completion {{{
 "================================
@@ -94,7 +103,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " }}}
-
 
 " NERD {{{
 "================================
@@ -159,11 +167,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 " }}}
 
-" Still experimenting {{{
-" Python virtual env workaround
-" Plug 'plytophogy/vim-virtualenv'
-" }}}
-
 " typescript {{{
 " 
 " syntax
@@ -204,6 +207,11 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "}}}
 
+" Neoterm & friends {{{
+"================================
+Plug 'kassio/neoterm'
+" }}}
+
 " Test Running {{{
 "================================
 " vim-test
@@ -212,11 +220,17 @@ Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 " }}}
 
+" Still experimenting {{{
+" Python virtual env workaround
+" Plug 'plytophogy/vim-virtualenv'
+" }}}
 
+" End of plugin manager {{{
 " Initialize plugin system
 call plug#end()
+"}}}
 
-
+" config loading {{{
 " load each config file in order
 so $HOME/.config/nvim/general.vim
 so $HOME/.config/nvim/keys.vim
@@ -225,3 +239,4 @@ so $HOME/.config/nvim/plugins.vim
 so $HOME/.config/nvim/appearance.vim
 "so line.vim
 so $HOME/.config/nvim/pymode.vim
+"}}}

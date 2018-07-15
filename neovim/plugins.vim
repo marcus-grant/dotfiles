@@ -3,7 +3,7 @@
 " TODO: split particularly large sets into their own file as needed
 
 
-" NERDTree keymaps
+" NERDTree keymaps {{{
 " ----------------------------------------------------------
 "  Automatically close NERDTree pane after selection
 " let NERDTreeQuitOnOpen=1
@@ -15,8 +15,9 @@ nnoremap <leader>t :NERDTreeToggle<cr>
 " Set expand/collapse chars
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+"}}}
 
-"================================
+" ALE & Linting {{{
 " ALE Linting options : http://bit.ly/2wY3Kr3
 "================================
 "  linters
@@ -39,9 +40,9 @@ let g:ale_sign_warning = '.'
 let g:ale_sign_error = '⤫'
 " let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+"}}}
 
-
-" Deoplete
+" Deoplete {{{
 " ----------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 
@@ -118,8 +119,9 @@ if has('macunix')
   let g:python2_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
 endif
+"}}}
 
-" Ultisnips
+" Ultisnips {{{
 
 if g:my_snippet_manager == 'ultisnips'
     let g:UltiSnipsExpandTrigger="<C-j>"
@@ -141,10 +143,9 @@ if g:my_snippet_manager == 'ultisnips'
 else
 	echoerr "You have set an invalid value for `g:my_snippet_manager`"
 endif
+" }}}
 
-
-
-" NERDCommenter
+" NERDCommenter {{{
 " ----------------------------------------------------------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -159,15 +160,15 @@ let g:NERDTrimTrailingWhitespace = 1
 " From https://bit.ly/2kp8npv
 " Used to recognize & handle jsx comments
 let g:NERDCustomDelimiters = { 'javascript.jsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+" }}}
 
-
-
-"  Non-display airline settings
+"  Non-display airline settings {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+"}}}
 
-" vim-javascript & vim-jsx
+" vim-javascript & vim-jsx {{{
 " syntax highlighting for jsdocs
 let g:javascript_plugin_jsdoc = 1
 " enable working with flow
@@ -192,7 +193,7 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
-
+"}}}
 
 "Go settings  {{{
 "================================
@@ -220,9 +221,9 @@ let g:go_fmt_command = "goimports"
 " Go snips engine
 let g:go_snippet_engine = "ultisnips"
 "}}}
-" Mardown
 
-" vim-pandoc {{{
+" Markdown {{{
+" vim-pandoc
 "================================
 let g:pandoc#syntax#conceal#urls = 1
 " let g:pandoc#folding#level = 2
@@ -232,27 +233,28 @@ let g:pandoc#syntax#colorcolumn = 0
 let g:pandoc#folding#fdc = 0
 " leave spelling off by default & enable it by opting in
 set nospell
-" }}}
 
-" vim-markdown-composer {{{
+" vim-markdown-composer
 " ---------------------
 "  Turn off automatic opening of the specified browser
 let g:markdown_composer_open_browser = 0
 " }}}
 
+" Docker {{{
 " custom plugin to detect & highlight docker files
 "================================
 " Detect the filetype
 au BufNewFile,BufRead [Dd]ockerfile,Dockerfile.*,*.Dockerfile set filetype=dockerfile
 " Apply the highlighting rules
 source ~/.config/nvim/syntax/dockerfile.vim
+"}}}
 
-" vim-test {{{
+" Test Runners {{{
 "================================
 let test#strategy = {
   \ 'nearest': 'neovim',
   \ 'file':    'neovim',
-  \ 'suite':   'basic',
+  \ 'suite':   'neovim',
 \}
 " TODO: Needs a way to specify which python version (3) to use
 
