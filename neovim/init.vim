@@ -90,7 +90,7 @@ endif
 
 " Plug 'mkitt/tabline.vim'
 " Plug 'yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " }}}
