@@ -3,7 +3,7 @@
 " TODO: split particularly large sets into their own file as needed
 
 
-" NERDTree keymaps
+" NERDTree
 " ----------------------------------------------------------
 "  Automatically close NERDTree pane after selection
 " let NERDTreeQuitOnOpen=1
@@ -15,6 +15,8 @@ nnoremap <leader>t :NERDTreeToggle<cr>
 " Set expand/collapse chars
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+" set default width of nerdtree pane
+let g:NERDTreeWinSize=24
 
 "================================
 " ALE Linting options : http://bit.ly/2wY3Kr3
