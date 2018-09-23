@@ -47,6 +47,10 @@ let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 " ----------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 
+" Delay before querying, can help with slow responsiveness
+" TODO: This needs tweaking because quick javascript deoplete use can really
+" bog things donw.
+
 let g:deoplete#auto_complete_start_length = 2
 " Autocmd to conditionally enable deoplete using tab, c-n and ...?
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -182,18 +186,18 @@ let g:jsx_ext_required = 0
 " concealing settings
 set conceallevel=1
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-let g:javascript_conceal_noarg_arrow_function = "⇒"
-let g:javascript_conceal_underscore_arrow_function = "⇒"
+" let g:javascript_conceal_function             = "ƒ"
+" let g:javascript_conceal_null                 = "ø"
+" let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_return               = "⇚"
+" let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+" let g:javascript_conceal_prototype            = "¶"
+" let g:javascript_conceal_static               = "•"
+" let g:javascript_conceal_super                = "Ω"
+" let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_noarg_arrow_function = "⇒"
+" let g:javascript_conceal_underscore_arrow_function = "⇒"
 
 
 "Go settings  {{{

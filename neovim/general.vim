@@ -17,6 +17,7 @@ set expandtab		" insert spaces when TAB is pressed
 set tabstop=4		" default spaces used for tabs as 4
 set shiftwidth=4	" indentation increments when using '<' & '>'
 au FileType javascript setlocal tabstop=2 shiftwidth=2
+au FileType javascript.jsx setlocal tabstop=2 shiftwidth=2
 au FileType typescript setlocal tabstop=2 shiftwidth=2
 au FileType html setlocal tabstop=2 shiftwidth=2
 " Go specific ( might not be needed as go uses 4:4 format )
@@ -94,4 +95,9 @@ command! Tags call s:tags()
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)

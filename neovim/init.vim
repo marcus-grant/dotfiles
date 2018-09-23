@@ -68,7 +68,8 @@ elseif g:my_snippet_manager ==? 'neosnippet'
 endif
 
 " TernJS
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
+" Disabled for now since it might be a bit silly to use both
+" Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
 
 " JSPC - Parameter Completion
@@ -88,13 +89,19 @@ if g:airline_enabled
   Plug 'vim-airline/vim-airline-themes'
 endif
 
+" Indents {{{
+"================================
 " Plug 'mkitt/tabline.vim'
-" Plug 'yggdroot/indentLine'
+Plug 'yggdroot/indentLine'
 " Plug 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " }}}
 
+" Debuggers {{{
+"========================
+
+"}}}
 
 " NERD {{{
 "================================

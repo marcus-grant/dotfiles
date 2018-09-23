@@ -36,8 +36,11 @@ let g:airline_section_y = 'BN: %{bufnr("%")}'
 let g:airline#extensions#ale#enabled = 1
 
 " indentline
-let g:indentLine_enabled = 0
+let g:indentLine_enabled = 1
 let g:indentLine_char = '¦'
+" let g:indent_setColors = 0
+" let g:indentLine_color_term = 244
+" let g:indentLine_color_gui = 244
 
 
 
