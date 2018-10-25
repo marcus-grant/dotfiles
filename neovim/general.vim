@@ -81,6 +81,10 @@ function! s:tags()
   \ 'sink':    function('s:tags_sink')})
 endfunction
 
+" Turn off conceal on cursor to make reading markdown entries easier
+" Taken from https://superuser.com/questions/800446/vim-conceal-feature-is-applied-to-active-line
+set concealcursor=""
+
 command! Tags call s:tags()
 
 " FZF with RIPGREP, from http://bit.ly/2pJv5M3
