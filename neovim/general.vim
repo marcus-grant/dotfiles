@@ -55,6 +55,10 @@ set foldlevel=99
 autocmd BufRead,BufNewFile   *.sh,*.vim set foldmethod=marker
 "}}}
 
+" Turn off conceal on cursor to make reading markdown entries easier
+" Taken from https://superuser.com/questions/800446/vim-conceal-feature-is-applied-to-active-line
+set concealcursor=""
+
 " FZF - Jump to Tags
 function! s:tags_sink(line)
   let parts = split(a:line, '\t\zs')
@@ -81,11 +85,10 @@ function! s:tags()
   \ 'sink':    function('s:tags_sink')})
 endfunction
 
-" Turn off conceal on cursor to make reading markdown entries easier
-" Taken from https://superuser.com/questions/800446/vim-conceal-feature-is-applied-to-active-line
-set concealcursor=""
-
 command! Tags call s:tags()
+
+" Custom FZF command 'FZFHome' which searches all files in Home
+command! FZFHome call fzf#run({'source': 'fd . ~ -E "*node_mod*"', 'sink': 'e'})
 
 " FZF with RIPGREP, from http://bit.ly/2pJv5M3
 " --column: Show column number
