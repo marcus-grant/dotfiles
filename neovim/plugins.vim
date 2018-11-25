@@ -45,7 +45,7 @@ let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 " Deoplete
 " ----------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 
 " Delay before querying, can help with slow responsiveness
 " TODO: This needs tweaking because quick javascript deoplete use can really
