@@ -1,6 +1,10 @@
 All My Common Dotfiles
 ======================
 
+### NOTE
+
+This is my archive of my old dotfiles repository which is now split into a repo for each dotfile set with the prefix in the repo name dots-NAMEOFDOTFILE so for neovim it's dots-neovim. They're all now managed using ansible and I have my own [role](https://github.com/marcus-grant/role-dotfiles) in ansible that manages all of them, or soon will manage all of them. This is perhaps a decent example of how to manage your dotfiles through more traditional means so by all means take a look or clone if you're so inclined.
+
 All of my dotfiles that are shared between all my systems. For the more complicated dotfiles, they are most likely in their own repo and are represented here by git submodules leading to their respective repositories. For the numerous smaller sets of dotfiles, they are managed here directly because it seems excessive to give repositories to all the dotfiles that are needed.
 
 Some of the intermediary inspiration was taken from [tjdevries/config_manager](https://github.com/tjdevries/config_manager)
